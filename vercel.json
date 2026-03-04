@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://vibe-todo-backdam-2827262be905.herokuapp.com/:path*"
+    }
+  ]
+}
