@@ -1,9 +1,6 @@
 // 백엔드 API 통신 모듈: 할일 데이터를 서버와 주고받습니다.
-// 배포 환경: Vercel Rewrite(/api)를 통해 프록시하여 CORS를 우회합니다.
-// 로컬 환경: localhost:5000으로 직접 요청합니다.
-const BASE_URL = import.meta.env.PROD
-  ? "/api/todos"
-  : "http://localhost:5000/todos";
+// 환경변수(VITE_API_URL)가 있으면 해당 서버를, 없으면 로컬 서버를 사용합니다.
+const BASE_URL = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/todos`;
 
 // 공통 fetch 래퍼: 서버 응답을 파싱하고, 실패 시 최대 2회 재시도합니다.
 // Heroku 무료 플랜은 슬립 후 첫 요청이 실패할 수 있어 재시도가 필요합니다.
