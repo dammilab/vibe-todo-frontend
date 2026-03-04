@@ -1,0 +1,314 @@
+/* ===== Notebook Shell ===== */
+.notebook {
+  display: flex;
+  width: 100%;
+  max-width: 580px;
+  min-height: 85vh;
+  filter: drop-shadow(0 8px 32px rgba(60, 40, 20, 0.25));
+}
+
+.notebook-spine {
+  width: 28px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #8b6f47, #a0845c);
+  border-radius: 12px 0 0 12px;
+  position: relative;
+}
+
+.notebook-spine::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  left: 8px;
+  right: 8px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 28px,
+    rgba(255, 255, 255, 0.25) 28px,
+    rgba(255, 255, 255, 0.25) 32px
+  );
+  border-radius: 2px;
+}
+
+.notebook-page {
+  flex: 1;
+  background: #fdf8ef;
+  border-radius: 0 12px 12px 0;
+  padding: 32px 28px 40px;
+  position: relative;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    #e8dcc8 31px,
+    #e8dcc8 32px
+  );
+  background-position-y: 8px;
+}
+
+/* ===== Header ===== */
+.notebook-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px dashed #d4c5a9;
+}
+
+.app-title {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 2.6rem;
+  color: #5a3e28;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.app-date {
+  font-size: 0.85rem;
+  color: #9c8b78;
+  margin-top: 6px;
+}
+
+/* ===== Sections ===== */
+.notebook-section {
+  margin-bottom: 28px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #6b5744;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid #d4c5a9;
+}
+
+.section-title svg {
+  color: #a0845c;
+  flex-shrink: 0;
+}
+
+/* ===== Form (shared by todos & goals) ===== */
+.goal-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.notebook-input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #3e3428;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1.5px solid #d4c5a9;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.notebook-input:focus {
+  border-color: #a0845c;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.notebook-input::placeholder {
+  color: #bfab93;
+}
+
+/* ===== Icon Buttons ===== */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+.add-btn {
+  width: 40px;
+  height: 40px;
+  background: #6b5744;
+  color: #fdf8ef;
+}
+
+.add-btn:hover {
+  background: #5a3e28;
+}
+
+.check-btn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  color: #bfab93;
+}
+
+.completed .check-btn {
+  color: #6b9a5a;
+}
+
+.check-btn:hover {
+  background: rgba(160, 132, 92, 0.1);
+}
+
+.edit-btn {
+  width: 30px;
+  height: 30px;
+  background: rgba(160, 132, 92, 0.12);
+  color: #8b7355;
+}
+
+.edit-btn:hover {
+  background: rgba(160, 132, 92, 0.25);
+}
+
+.delete-btn {
+  width: 30px;
+  height: 30px;
+  background: rgba(200, 80, 70, 0.08);
+  color: #c0564e;
+}
+
+.delete-btn:hover {
+  background: rgba(200, 80, 70, 0.18);
+}
+
+.save-btn {
+  width: 30px;
+  height: 30px;
+  background: #6b9a5a;
+  color: #fff;
+}
+
+.save-btn:hover {
+  background: #5a8a4a;
+}
+
+.cancel-btn {
+  width: 30px;
+  height: 30px;
+  background: #e0d5c5;
+  color: #8b7355;
+}
+
+.cancel-btn:hover {
+  background: #d4c5a9;
+}
+
+/* ===== List & Items (shared) ===== */
+.goal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.goal-item:hover {
+  background: rgba(160, 132, 92, 0.07);
+}
+
+.item-content {
+  flex: 1;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  word-break: break-word;
+  cursor: default;
+  color: #3e3428;
+}
+
+.completed .item-content {
+  text-decoration: line-through;
+  color: #bfab93;
+}
+
+.item-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.goal-item:hover .item-actions {
+  opacity: 1;
+}
+
+/* ===== Edit Mode ===== */
+.edit-group {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+}
+
+.notebook-edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #3e3428;
+  background: #fff;
+  border: 1.5px solid #a0845c;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* ===== Messages ===== */
+.error-message {
+  text-align: center;
+  color: #c0564e;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.loading-message,
+.empty-message {
+  text-align: center;
+  color: #bfab93;
+  font-size: 0.88rem;
+  padding: 20px 0;
+  font-style: italic;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .notebook {
+    max-width: 100%;
+  }
+
+  .notebook-spine {
+    width: 18px;
+  }
+
+  .notebook-page {
+    padding: 24px 18px 32px;
+  }
+
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .item-actions {
+    opacity: 1;
+  }
+}
